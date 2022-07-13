@@ -1,0 +1,9 @@
+.cardFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7fb;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 100px;
+}
