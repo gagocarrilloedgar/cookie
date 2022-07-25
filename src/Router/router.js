@@ -1,38 +1,56 @@
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, useParams } from "react-router-dom";
 
 import { PostmanAPI } from "../PostmanAPI";
 import { CookieCard } from "../CookieCard";
 import { TodoList } from "../TodoList";
-import { NestedRouter } from "../NestedRouter";
 
-const NavBar = () => (
-  <div style={{ display: "flex", marginBottom: "10px" }}>
-    <Link style={{ marginRight: "10px" }} to="/">
-      Home
-    </Link>
-    <Link style={{ marginRight: "10px" }} to="/todo-list">
-      Todo List
-    </Link>
-    <Link style={{ marginRight: "10px" }} to="/todo-list-fetch">
-      Todo List Fetch
-    </Link>
-  </div>
-);
+import { NestedRouter } from "./NestedRouter";
+
+const DynamicRouter = () => {
+  const { id } = useParams();
+  return (
+    <div>
+      <h1>Dynamic router</h1>
+      <p>This is a dynamic router. The id is {id}</p>
+    </div>
+  );
+};
+
+const linkStyle = { marginRight: "10px" };
+const NavBar = () => {
+  return (
+    <nav style={{ display: "flex", marginBottom: "10px" }}>
+      <Link style={linkStyle} to="/">
+        CookieCard
+      </Link>
+      <Link style={linkStyle} to="/fetch-todo-list">
+        Fetch Todo list
+      </Link>
+      <Link style={linkStyle} to="/postman-api">
+        Postman todo list
+      </Link>
+      <Link style={linkStyle} to="/nested">
+        Nested router
+      </Link>
+    </nav>
+  );
+};
 
 export const Router = () => {
   return (
     <div>
       <NavBar />
       <Switch>
-        <Route path="/todo-list">
+        {/*  With React router V5 we need to either add exact to the Route or
+        position the less restricive Route at the export default function
+        first(second) */}
+        <Route path="/fetch-todo-list">
           <TodoList />
         </Route>
-        <Route path="/todo-list-fetch" component={PostmanAPI} />
+        <Route path="/postman-api" component={PostmanAPI} />
+        <Route path="/in/:id" component={DynamicRouter} />
         <Route path="/nested" component={NestedRouter} />
-        <Route path="/in/:id">
-          <h3>Nested id</h3>
-        </Route>
-        <Route path="/" component={CookieCard} />
+        <Route exact path="/" component={CookieCard} />
       </Switch>
     </div>
   );

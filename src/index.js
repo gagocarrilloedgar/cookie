@@ -7,11 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // ! React.StrictMode doesn't work react-router-dom < 6.0.0 so either remove StrictMode, update react-router-dom to V6 or downgrade to React 17
+  <>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
