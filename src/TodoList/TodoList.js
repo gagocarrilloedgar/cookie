@@ -36,19 +36,35 @@ const updateData = async (todos) => {
 
 export const TodoList = () => {
   // Local state
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => [
+    {
+      label: "Some label",
+      done: false
+    },
+    {
+      label: "Some label 2",
+      done: false
+    }
+  ]);
 
   const handleFetch = async (newTodos) => {
+    // We set the local state
     setTodos(newTodos);
+
+    // We update the data in the API (DB)
     const data = await updateData(newTodos);
+
+    // If the data is not updated we go back to the previous state
     if (!data) setTodos(todos);
   };
 
+  // DELETE
   const handleDelete = async (label) => {
     const newTodos = todos.filter((todo) => todo.label !== label);
     await handleFetch(newTodos);
   };
 
+  // POST
   const handleAddTodo = async () => {
     const newTodos = [...todos, { label: Date.now(), done: false }];
     await handleFetch(newTodos);

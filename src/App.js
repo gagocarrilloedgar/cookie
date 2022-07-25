@@ -1,8 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { CookieCard } from "./CookieCard";
-import { TodoList } from "./TodoList";
+import { Router } from "./Router";
 
 function App() {
   return (
@@ -16,7 +14,7 @@ function App() {
         justifyContent: "center"
       }}
     >
-      <TodoList />
+      <Router />
     </div>
   );
 }
