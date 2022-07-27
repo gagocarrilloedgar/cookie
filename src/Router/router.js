@@ -2,7 +2,7 @@ import { Switch, Route, Link, useParams } from "react-router-dom";
 
 import { PostmanAPI } from "../PostmanAPI";
 import { CookieCard } from "../CookieCard";
-import { TodoList } from "../TodoList";
+import { TodoList, Inputs, TodoListNew } from "../TodoList";
 
 import { NestedRouter } from "./NestedRouter";
 
@@ -17,7 +17,8 @@ const DynamicRouter = () => {
 };
 
 const linkStyle = { marginRight: "10px" };
-const NavBar = () => {
+
+const NavBar = ({ number }) => {
   return (
     <nav style={{ display: "flex", marginBottom: "10px" }}>
       <Link style={linkStyle} to="/">
@@ -32,25 +33,33 @@ const NavBar = () => {
       <Link style={linkStyle} to="/nested">
         Nested router
       </Link>
+      <Link style={linkStyle} to={`/in/${number}`}>
+        Dyanmic router
+      </Link>
     </nav>
   );
 };
 
 export const Router = () => {
+  const number = Math.random();
+
   return (
     <div>
-      <NavBar />
+      <NavBar number={number} />
       <Switch>
         {/*  With React router V5 we need to either add exact to the Route or
         position the less restricive Route at the export default function
         first(second) */}
+        <Route exact path="/" component={CookieCard} />
+
         <Route path="/fetch-todo-list">
-          <TodoList />
+          <TodoListNew />
         </Route>
         <Route path="/postman-api" component={PostmanAPI} />
-        <Route path="/in/:id" component={DynamicRouter} />
+        <Route path="/in/:id">
+          <DynamicRouter />
+        </Route>
         <Route path="/nested" component={NestedRouter} />
-        <Route exact path="/" component={CookieCard} />
       </Switch>
     </div>
   );

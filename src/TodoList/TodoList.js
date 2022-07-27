@@ -8,6 +8,8 @@ async function fetchData() {
   return response ? response.json() : [];
 }
 
+// Methods
+
 // In order to update the data we need to call the fetch API with a PUT method request
 const udpateFetch = (todos) =>
   fetch(API_URL, {
