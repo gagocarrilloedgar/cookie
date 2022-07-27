@@ -10,7 +10,7 @@ import {
 
 export const CookieCard = () => {
   return (
-    <>
+    <div style={{ backgroundColor: "transparent" }}>
       <CookieCardLayout>
         <CookieCardBody />
         <CookieCardFooter>
@@ -18,6 +18,6 @@ export const CookieCard = () => {
           <CustomButton title="Decline" />
         </CookieCardFooter>
       </CookieCardLayout>
-    </>
+    </div>
   );
 };

@@ -51,7 +51,6 @@ export const Router = () => {
         position the less restricive Route at the export default function
         first(second) */}
         <Route exact path="/" component={CookieCard} />
-
         <Route path="/fetch-todo-list">
           <TodoListNew />
         </Route>
