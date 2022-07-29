@@ -3,6 +3,7 @@ import { Switch, Route, Link, useParams } from "react-router-dom";
 import { PostmanAPI } from "../PostmanAPI";
 import { CookieCard } from "../CookieCard";
 import { TodoList, Inputs, TodoListNew } from "../TodoList";
+import { StarWars } from "../StarWars";
 
 import { NestedRouter } from "./NestedRouter";
 
@@ -36,6 +37,9 @@ const NavBar = ({ number }) => {
       <Link style={linkStyle} to={`/in/${number}`}>
         Dyanmic router
       </Link>
+      <Link style={linkStyle} to="/starwars">
+        StarWars
+      </Link>
     </nav>
   );
 };
@@ -52,9 +56,10 @@ export const Router = () => {
         first(second) */}
         <Route exact path="/" component={CookieCard} />
         <Route path="/fetch-todo-list">
-          <TodoListNew />
+          <TodoList />
         </Route>
         <Route path="/postman-api" component={PostmanAPI} />
+        <Route path="/starwars" component={StarWars} />
         <Route path="/in/:id">
           <DynamicRouter />
         </Route>

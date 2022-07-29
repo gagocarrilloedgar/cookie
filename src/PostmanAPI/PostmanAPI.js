@@ -20,8 +20,6 @@ export const PostmanAPI = () => {
     await deleteTask(id);
   };
 
-  if (!data || data?.length === 0) return <div>...Loading</div>;
-
   return (
     <div>
       <div style={{ position: "fixed", left: "400px" }}>
@@ -31,16 +29,18 @@ export const PostmanAPI = () => {
         <button onClick={() => addTask("This is a new item")}>Add</button>
       </div>
 
-      <div style={{ height: "10px" }}>
-        {data.map((item) => (
-          <div key={item._id} style={{ display: "flex", margin: "10px" }}>
-            <h6 style={{ marginRight: "10px" }}>
-              {item.completed.toString()} - {item.description}{" "}
-            </h6>
-            <button onClick={() => handleDelete(item._id)}>Delete</button>
-          </div>
-        ))}
-      </div>
+      {data && data.length !== 0 && (
+        <div style={{ height: "10px" }}>
+          {data.map((item) => (
+            <div key={item._id} style={{ display: "flex", margin: "10px" }}>
+              <h6 style={{ marginRight: "10px" }}>
+                {item.completed.toString()} - {item.description}{" "}
+              </h6>
+              <button onClick={() => handleDelete(item._id)}>Delete</button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
