@@ -24,6 +24,17 @@ export const StarWars = () => {
   );
 };
 
+// Prop drilling --> pass props from a component to another component too many times
+
+// ComponentCard --> NewComponent2
+// ComponentCard --> NewComponent
+// ComponentCard --> NewComponent3
+// ComponentCard --> NewComponent4
+// ComponentCard --> NewComponent5
+
+// store --> NewComponent2 --> action --> dispatch
+// store --> NewComponent --> action --> dispatch
+
 const ComponentCard = ({ person }) => {
   const [personData, setPersonData] = useState("");
 
@@ -41,6 +52,28 @@ const ComponentCard = ({ person }) => {
       <h1>{personData?.properties?.name}</h1>
       <p>{personData?.properties?.birth_year}</p>
       <p>{personData?.properties?.height}</p>
+      <NewComponent personData={personData} setPersonData={setPersonData} />
+      <NewComponent2 personData={personData} setPersonData={setPersonData} />
     </div>
+  );
+};
+
+const NewComponent = ({ personData, setPersonData }) => {
+  const changeSomeData = () => setPersonData("");
+  return (
+    <>
+      <h1>{personData?.properties?.name}</h1>
+      <button onClick={changeSomeData}></button>
+    </>
+  );
+};
+
+const NewComponent2 = ({ personData, setPersonData }) => {
+  const changeSomeData = () => setPersonData("2");
+  return (
+    <>
+      <h1>{personData?.properties?.name}</h1>
+      <button onClick={changeSomeData}></button>
+    </>
   );
 };

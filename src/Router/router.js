@@ -4,6 +4,7 @@ import { PostmanAPI } from "../PostmanAPI";
 import { CookieCard } from "../CookieCard";
 import { TodoList, Inputs, TodoListNew } from "../TodoList";
 import { StarWars } from "../StarWars";
+import { Consumer } from "../ContextFlux";
 
 import { NestedRouter } from "./NestedRouter";
 
@@ -64,6 +65,7 @@ export const Router = () => {
           <DynamicRouter />
         </Route>
         <Route path="/nested" component={NestedRouter} />
+        <Route path="/context" component={Consumer} />
       </Switch>
     </div>
   );

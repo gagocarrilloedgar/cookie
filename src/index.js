@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { ProducerProvider } from "./ContextFlux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // ! React.StrictMode doesn't work react-router-dom < 6.0.0 so either remove StrictMode, update react-router-dom to V6 or downgrade to React 17
   <>
     <BrowserRouter>
-      <App />
+      <ProducerProvider>
+        <App />
+      </ProducerProvider>
     </BrowserRouter>
   </>
 );
