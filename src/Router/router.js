@@ -5,6 +5,7 @@ import { CookieCard } from "../CookieCard";
 import { TodoList, Inputs, TodoListNew } from "../TodoList";
 import { StarWars } from "../StarWars";
 import { Consumer } from "../ContextFlux";
+import {JWTComponent} from "../JWT"
 
 import { NestedRouter } from "./NestedRouter";
 
@@ -41,6 +42,9 @@ const NavBar = ({ number }) => {
       <Link style={linkStyle} to="/starwars">
         StarWars
       </Link>
+      <Link style={linkStyle} to="/login">
+        Login
+      </Link>
     </nav>
   );
 };
@@ -66,6 +70,7 @@ export const Router = () => {
         </Route>
         <Route path="/nested" component={NestedRouter} />
         <Route path="/context" component={Consumer} />
+        <Route path="/login" component={JWTComponent} />
       </Switch>
     </div>
   );
